@@ -15,9 +15,9 @@ const sortSettings = ref<SortSettings>({
 
 const sortIcon = computed(() => (column: keyof Ticker) => {
     if (sortSettings.value[column] === 'asc') {
-        return ['fas', 'sort-down'];
-    } else if (sortSettings.value[column] === 'desc') {
         return ['fas', 'sort-up'];
+    } else if (sortSettings.value[column] === 'desc') {
+        return ['fas', 'sort-down'];
     } else {
         return ['fas', 'sort'];
     }
