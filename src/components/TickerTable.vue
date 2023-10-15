@@ -113,23 +113,25 @@ const getChangeClass = (value: string): string => {
 </template>
 
 <style scoped lang="scss">
-table {
-    border-collapse: collapse; /* Remove spacing between cells */
-}
+$even-row-color: #0f121b;
 
-th {
+table {
+  border-collapse: collapse; // Remove spacing between cells
+
+  th {
     padding: 0rem 4rem;
     &:hover {
         cursor: pointer;
     }
-}
+  }
 
-td {
-    padding: .5rem 0rem;
-}
+  td {
+    padding: 0.5rem 0rem;
+  }
 
-/* Alternate row color */
-tr:nth-child(even) {
-    background-color: #0f121b;
+  // Alternate row color
+  tr:nth-child(even) {
+    background-color: $even-row-color;
+  }
 }
 </style>
