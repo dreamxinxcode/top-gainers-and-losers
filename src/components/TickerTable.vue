@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import { defineProps, ref, computed } from 'vue';
+import { defineProps, ref, computed, onMounted } from 'vue';
 import { Ticker } from '../types/Ticker';
 import { SortSettings } from '../types/SortSettings';
 
-const props = defineProps<{ tickers: Ticker[] }>()
+const props = defineProps<{ 
+    tickers: Ticker[], 
+    defaultSort: keyof Ticker,
+}>()
 
 const sortSettings = ref<SortSettings>({
     ticker: null,
@@ -11,6 +14,11 @@ const sortSettings = ref<SortSettings>({
     change_amount: null,
     change_percentage: null,
     volume: null,
+});
+
+onMounted(() => {
+    // Most actively traded is sorted by volume by default
+    sortSettings.value[props.defaultSort] = 'desc';
 });
 
 const sortIcon = computed(() => (column: keyof Ticker) => {

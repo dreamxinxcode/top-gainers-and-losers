@@ -25,16 +25,15 @@ onMounted(() => {
   fetchMarketData();
 });
 </script>
-
 <template>
   <h1>Top Gainers <font-awesome-icon class='bullish' :icon="['fas', 'arrow-trend-up']" /></h1>
-  <TickerTable :tickers="topGainers"></TickerTable>
+  <TickerTable :tickers="topGainers" defaultSort="change_percentage"></TickerTable>
 
   <h1>Top Losers <font-awesome-icon class='bearish' :icon="['fas', 'arrow-trend-down']" /></h1>
-  <TickerTable :tickers="topLosers"></TickerTable>
+  <TickerTable :tickers="topLosers" defaultSort="change_percentage"></TickerTable>
 
   <h1>Most Actively Traded</h1>
-  <TickerTable :tickers="mostActivelyTraded"></TickerTable>
+  <TickerTable :tickers="mostActivelyTraded" defaultSort="volume"></TickerTable>
 </template>
 
 <style scoped lang="scss">
