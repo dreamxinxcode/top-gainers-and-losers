@@ -104,4 +104,9 @@ th {
 td {
     padding: .5rem 0rem;
 }
+
+/* Alternate row color */
+tr:nth-child(even) {
+  background-color: #0f121b;
+}
 </style>
