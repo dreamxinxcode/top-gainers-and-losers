@@ -94,6 +94,10 @@ const getChangeClass = (value: string): string => {
 </template>
 
 <style scoped lang="scss">
+table {
+  border-collapse: collapse; /* Remove spacing between cells */
+}
+
 th {
     padding: 0rem 4rem;
     &:hover {
