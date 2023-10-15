@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
+import TickerTable from './components/TickerTable.vue'
 import { Ticker } from './types/Ticker'
 
 const topGainers = ref<Ticker[]>([]);
@@ -26,7 +27,14 @@ onMounted(() => {
 </script>
 
 <template>
+  <h1>Top Gainers <font-awesome-icon class='bullish' :icon="['fas', 'arrow-trend-up']" /></h1>
+  <TickerTable :tickers="topGainers"></TickerTable>
 
+  <h1>Top Losers <font-awesome-icon class='bearish' :icon="['fas', 'arrow-trend-down']" /></h1>
+  <TickerTable :tickers="topLosers"></TickerTable>
+
+  <h1>Most Actively Traded</h1>
+  <TickerTable :tickers="mostActivelyTraded"></TickerTable>
 </template>
 
 <style scoped lang="scss">
