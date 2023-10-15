@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { Ticker } from '../types/Ticker';
 import { SortSettings } from '../types/SortSettings';
 
