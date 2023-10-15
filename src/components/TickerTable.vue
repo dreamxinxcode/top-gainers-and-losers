@@ -23,6 +23,17 @@ const sortIcon = computed(() => (column: keyof Ticker) => {
     }
 });
 
+const directionIcon = computed(() => (change: string) => {
+    const numberValue = parseFloat(change);
+    if (numberValue > 0) {
+        return ['fas', 'chevron-up'];
+    } else if (numberValue < 0) {
+        return ['fas', 'chevron-down'];
+    } else {
+        return '';
+    }
+});
+
 const sort = (column: keyof Ticker): void => {
     const sortOrder = sortSettings.value[column];
     const ascending = sortOrder === 'asc';
@@ -84,7 +95,7 @@ const getChangeClass = (value: string): string => {
             Volume <font-awesome-icon :icon="sortIcon('volume')"/>
         </th>
         <tr v-for="ticker of tickers">
-            <td>{{ ticker.ticker }}</td>
+            <td>{{ ticker.ticker }} <font-awesome-icon v-if="ticker.change_amount !== '0.0'" :class="getChangeClass(ticker.change_amount)" :icon="directionIcon(ticker.change_amount)" /></td>
             <td>${{ ticker.price }}</td>
             <td :class="getChangeClass(ticker.change_amount)">{{ ticker.change_amount }}</td>
             <td :class="getChangeClass(ticker.change_amount)">{{ ticker.change_percentage }}</td>
@@ -95,7 +106,7 @@ const getChangeClass = (value: string): string => {
 
 <style scoped lang="scss">
 table {
-  border-collapse: collapse; /* Remove spacing between cells */
+    border-collapse: collapse; /* Remove spacing between cells */
 }
 
 th {
@@ -111,6 +122,6 @@ td {
 
 /* Alternate row color */
 tr:nth-child(even) {
-  background-color: #0f121b;
+    background-color: #0f121b;
 }
 </style>
