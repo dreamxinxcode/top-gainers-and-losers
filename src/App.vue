@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import TickerTable from './components/TickerTable.vue'
+import Footer from './components/Footer.vue'
 import { Ticker } from './types/Ticker'
 
 const topGainers = ref<Ticker[]>([]);
@@ -34,6 +35,9 @@ onMounted(() => {
 
   <h1>Most Actively Traded</h1>
   <TickerTable :tickers="mostActivelyTraded" defaultSort="volume"></TickerTable>
+
+  <Footer :lastUpdated="lastUpdated" @refreshData="fetchMarketData">
+  </Footer>
 </template>
 
 <style scoped lang="scss">
