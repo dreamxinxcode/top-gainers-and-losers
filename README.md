@@ -43,4 +43,4 @@ To get started with this project, follow these steps:
 4. Open your browser and navigate to http://localhost:5173
 
 ## Screenshots
-![Screenshot](screenshot.png)
+![Screenshot](./docs/screenshot.png)
