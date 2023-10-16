@@ -102,7 +102,7 @@ const getChangeClass = (value: string): string => {
         <th @click="sort('volume')">
             Volume <font-awesome-icon :icon="sortIcon('volume')"/>
         </th>
-        <tr v-for="ticker of tickers">
+        <tr v-for="ticker of tickers" :key="ticker.ticker">
             <td>{{ ticker.ticker }} <font-awesome-icon v-if="ticker.change_amount !== '0.0'" :class="getChangeClass(ticker.change_amount)" :icon="directionIcon(ticker.change_amount)" /></td>
             <td>${{ ticker.price }}</td>
             <td :class="getChangeClass(ticker.change_amount)">{{ ticker.change_amount }}</td>
