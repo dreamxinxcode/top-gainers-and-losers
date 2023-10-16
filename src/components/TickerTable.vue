@@ -3,7 +3,7 @@ import { ref, computed, onMounted } from 'vue';
 import { Ticker } from '../types/Ticker';
 import { SortSettings } from '../types/SortSettings';
 
-const props = defineProps<{ 
+const { tickers, defaultSort } = defineProps<{ 
     tickers: Ticker[], 
     defaultSort: keyof Ticker,
 }>()
@@ -18,7 +18,7 @@ const sortSettings = ref<SortSettings>({
 
 onMounted(() => {
     // Most actively traded is sorted by volume by default
-    sortSettings.value[props.defaultSort] = 'desc';
+    sortSettings.value[defaultSort] = 'desc';
 });
 
 const sortIcon = computed(() => (column: keyof Ticker) => {
@@ -53,7 +53,7 @@ const sort = (column: keyof Ticker): void => {
         }
     }
 
-    props.tickers.sort((a, b) => {
+    tickers.sort((a, b) => {
         if (isNumericString(a[column]) && isNumericString(b[column])) {
             // If both strings are numeric, convert and compare them as numbers
             const numA = parseFloat(a[column].replace('%', '')) || 0;
