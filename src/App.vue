@@ -4,9 +4,9 @@ import TickerTable from './components/TickerTable.vue'
 import Footer from './components/Footer.vue'
 import { Ticker } from './types/Ticker'
 
-const topGainers = ref<Ticker[]>([]);
-const topLosers = ref<Ticker[]>([]);
-const mostActivelyTraded = ref<Ticker[]>([]);
+const topGainers = ref<Ticker[] | null>(null);
+const topLosers = ref<Ticker[] | null>(null);
+const mostActivelyTraded = ref<Ticker[] | null>(null);
 const lastUpdated = ref('');
 
 const fetchMarketData = async () => {
@@ -28,13 +28,13 @@ onMounted(() => {
 </script>
 <template>
   <h1>Top Gainers <font-awesome-icon class='bullish' :icon="['fas', 'arrow-trend-up']" /></h1>
-  <TickerTable :tickers="topGainers" defaultSort="change_percentage"></TickerTable>
+  <TickerTable v-if="topGainers" :tickers="topGainers" defaultSort="change_percentage"></TickerTable>
 
   <h1>Top Losers <font-awesome-icon class='bearish' :icon="['fas', 'arrow-trend-down']" /></h1>
-  <TickerTable :tickers="topLosers" defaultSort="change_percentage"></TickerTable>
+  <TickerTable v-if="topLosers" :tickers="topLosers" defaultSort="change_percentage"></TickerTable>
 
   <h1>Most Actively Traded</h1>
-  <TickerTable :tickers="mostActivelyTraded" defaultSort="volume"></TickerTable>
+  <TickerTable v-if="mostActivelyTraded" :tickers="mostActivelyTraded" defaultSort="volume"></TickerTable>
 
   <Footer :lastUpdated="lastUpdated" @refreshData="fetchMarketData">
   </Footer>
